@@ -1,8 +1,0 @@
-package com.course.Dao;
-
-import org.springframework.cloud.openfeign.FeignClient;
-
-@FeignClient
-public class StudentDao {
-
-}

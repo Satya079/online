@@ -1,6 +1,7 @@
 package com.teacher.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.Email;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,7 +18,8 @@ public class Teacher {
 	private String teacherName;
 	
 	private String teacherContactNum;
-	
+	// Validation annotation for email
+    @Email(message = "Invalid email format")
 	private String email;
 	
 	private String address;

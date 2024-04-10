@@ -1,8 +1,0 @@
-package com.student.service;
-
-public interface StudentService {
-	
-	
-	public String delete(long id);
-
-}

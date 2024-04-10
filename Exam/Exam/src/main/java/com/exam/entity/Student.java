@@ -1,7 +1,6 @@
 package com.exam.entity;
-
 import java.util.List;
-
+import jakarta.validation.constraints.Pattern;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
+import jakarta.validation.constraints.Email;
 @Entity
 @Table(name="students")
 public class Student {
@@ -23,11 +22,13 @@ public class Student {
 	private String lastName;
 	
 	private String dateOfBrith;
-	
+	 // Validation annotations for contact number using regex pattern
+    @Pattern(regexp = "\\d{10}", message = "Contact must be a 10-digit number")
 	private String contactNum;
-	
+   
 	private String password;
-	
+	// Validation annotation for email
+    @Email(message = "Invalid email format")
 	private String email;
 	
 	private List<Integer> attendances;

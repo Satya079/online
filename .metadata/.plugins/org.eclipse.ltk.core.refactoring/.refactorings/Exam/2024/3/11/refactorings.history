@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move element &apos;ExamRepository.java&apos; to &apos;com.exam.repository.TestPaperRepository.java&apos;&#x0D;&#x0A;- Original project: &apos;Exam&apos;&#x0D;&#x0A;- Destination element: &apos;com.exam.repository.TestPaperRepository.java&apos;&#x0D;&#x0A;- Original element: &apos;com.exam.ExamRepository.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.exam.repository{TestPaperRepository.java" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.exam{ExamRepository.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1710513021814" units="1" version="1.0"/>
-</session>

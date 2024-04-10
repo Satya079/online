@@ -1,5 +1,0 @@
-package com.attendance.repository;
-
-public interface AttendanceRepository {
-
-}

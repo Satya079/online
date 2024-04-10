@@ -35,35 +35,25 @@ public class StudentServiceImp implements StudentService {
 	    
 	    if(student==null)
 	    {
-	    	throw new ResourceNotFoundException("Student not found for Id");
+	    	throw new ResourceNotFoundException("Student not found for Id"+id);
 	    }
 	    return student;
 	}
 
 	
 	
-	@Override
-	public String delete(long id) {
-		
-		if(searchById(id)==null)
-		{
-			return "no record";
-		}
-		
-		studentRepository.delete(searchById(id));
-		return "delete successfully";
-	}
+	 @Override
+	    public String delete(long id) {
+	        Student student = searchById(id);
+	        studentRepository.delete(student);
+	        return "Student deleted successfully";
+	    }
 
-	@Override
-	public Student update(Student student) {
-	   
-		if(searchById(student.getStudentId())==null)
-		{
-			throw new ResourceNotFoundException("Student not found for Id");
-		}
-		return studentRepository.saveAndFlush(student);
-	}
-
+	 @Override
+	    public Student update(Student student) {
+	        searchById(student.getStudentId()); // Check if student exists
+	        return studentRepository.saveAndFlush(student);
+	    }
 	public List<Student> getAll() {
 		// TODO Auto-generated method stub
 		return studentRepository.findAll();
