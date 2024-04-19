@@ -19,7 +19,7 @@ import com.attendance.exception.GlobalExceptionHandler;
 import com.attendance.exception.ResourceNotFoundException;
 import com.attendance.service.AttendanceServiceImp;
 
-public class AttendanceControllerTests {
+ class AttendanceControllerTests {
 	 private Attendance attendance;
 	 private StudentDto studentDto;
 	 private GlobalExceptionHandler globalExceptionHandler;
