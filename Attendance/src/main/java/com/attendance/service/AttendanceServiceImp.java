@@ -20,7 +20,7 @@ public class AttendanceServiceImp implements AttendanceService{
 
 	@Override
 	public Attendance saveDetail(Attendance attendance) {
-		// TODO Auto-generated method stub
+	
 		
 		if(dao.SearchByStudent(attendance.getStudentId())==null)
 		{
