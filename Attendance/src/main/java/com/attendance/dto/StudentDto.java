@@ -1,6 +1,5 @@
 package com.attendance.dto;
 
-import java.util.List;
 
 public class StudentDto {
    
