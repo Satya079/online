@@ -4,7 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 import java.util.List;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -12,10 +13,16 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import com.attendance.controller.AttendanceController;
+import com.attendance.dto.StudentDto;
 import com.attendance.entity.Attendance;
+import com.attendance.exception.GlobalExceptionHandler;
+import com.attendance.exception.ResourceNotFoundException;
 import com.attendance.service.AttendanceServiceImp;
 
 public class AttendanceControllerTests {
+	 private Attendance attendance;
+	 private StudentDto studentDto;
+	 private GlobalExceptionHandler globalExceptionHandler;
 
     @Mock
     private AttendanceServiceImp attendanceServiceImp;
@@ -26,6 +33,9 @@ public class AttendanceControllerTests {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
+        attendance = new Attendance();
+        studentDto = new StudentDto();
+        globalExceptionHandler = new GlobalExceptionHandler();
     }
 
     @Test
@@ -55,4 +65,96 @@ public class AttendanceControllerTests {
         List<String> result = attendanceController.getStatus();
         assertEquals(statusList, result);
     }
+    @Test
+    public void testSetAndGetId() {
+        long id = 1;
+        attendance.setId(id);
+        assertEquals(id, attendance.getId());
+    }
+
+    @Test
+    public void testSetAndGetDate() {
+        String date = "2024-04-19";
+        attendance.setDate(date);
+        assertEquals(date, attendance.getDate());
+    }
+
+    @Test
+    public void testSetAndGetStatus() {
+        boolean status = true;
+        attendance.setStatus(status);
+        assertEquals(status, attendance.getStatus());
+    }
+
+    @Test
+    public void testSetAndGetStudentId() {
+        int studentId = 123;
+        attendance.setStudentId(studentId);
+        assertEquals(studentId, attendance.getStudentId());
+    }
+    @Test
+    public void testSetAndGetStudentId1() {
+        long studentId = 1;
+        studentDto.setStudentId(studentId);
+        assertEquals(studentId, studentDto.getStudentId());
+    }
+
+    @Test
+    public void testSetAndGetFirstName() {
+        String firstName = "John";
+        studentDto.setFirstName(firstName);
+        assertEquals(firstName, studentDto.getFirstName());
+    }
+
+    @Test
+    public void testSetAndGetLastName() {
+        String lastName = "Doe";
+        studentDto.setLastName(lastName);
+        assertEquals(lastName, studentDto.getLastName());
+    }
+
+    @Test
+    public void testSetAndGetDateOfBirth() {
+        String dateOfBirth = "2000-01-01";
+        studentDto.setDateOfBrith(dateOfBirth);
+        assertEquals(dateOfBirth, studentDto.getDateOfBrith());
+    }
+
+    @Test
+    public void testSetAndGetContactNumber() {
+        String contactNumber = "1234567890";
+        studentDto.setContactNum(contactNumber);
+        assertEquals(contactNumber, studentDto.getContactNum());
+    }
+
+    @Test
+    public void testSetAndGetPassword() {
+        String password = "password123";
+        studentDto.setPassword(password);
+        assertEquals(password, studentDto.getPassword());
+    }
+
+    @Test
+    public void testSetAndGetEmail() {
+        String email = "john.doe@example.com";
+        studentDto.setEmail(email);
+        assertEquals(email, studentDto.getEmail());
+    }
+
+    @Test
+    public void testHandleResourceNotFoundException() {
+        ResourceNotFoundException ex = new ResourceNotFoundException("Resource not found");
+        ResponseEntity<Object> response = globalExceptionHandler.handleResourceNotFoundException(ex);
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals("Resource not found", response.getBody());
+    }
+
+    @Test
+    public void testHandleGlobalException() {
+        Exception ex = new Exception("Internal Server Error");
+        ResponseEntity<Object> response = globalExceptionHandler.handleGlobalException(ex);
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Student not found for id", response.getBody());
+    }
+    
 }
