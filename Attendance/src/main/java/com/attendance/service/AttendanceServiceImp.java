@@ -53,10 +53,7 @@ public class AttendanceServiceImp implements AttendanceService{
 		 {
 			 if(a.getStatus())
 			 {
-				 if(dao.SearchByStudent(a.getStudentId())==null)
-				 {
-					 
-				 }
+				 if(dao.SearchByStudent(a.getStudentId())==null){}
 				 else
 				 {
 					 names.add(dao.SearchByStudent(a.getStudentId()).getFirstName());
